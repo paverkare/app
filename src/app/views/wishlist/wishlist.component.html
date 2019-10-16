@@ -1,3 +1,23 @@
-<p>
-  wishlist works!
-</p>
+<ion-content class="first-content">
+
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Just for you</ion-card-subtitle>
+      <ion-card-title>Your Wishlist</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-list>
+  <ion-item-sliding *ngFor="let item of items$">
+    <ion-item>
+      <ion-card>
+        <img src="/assets/images/home-img.png" />
+        <div class="card-title">Item</div>
+        <ion-label>{{ item.item_name }} </ion-label>
+      </ion-card>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>
