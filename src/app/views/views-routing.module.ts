@@ -68,7 +68,8 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
-    }
+    },
+    { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' }
 ];
 
 @NgModule({
