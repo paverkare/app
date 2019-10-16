@@ -6,7 +6,7 @@ import {HomeComponent} from './home/home.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {InstafeedComponent} from './instafeed/instafeed.component';
 import {ProfileComponent} from './profile/profile.component';
-import {CartComponent} from "./cart/cart.component";
+import {CartComponent} from './cart/cart.component';
 
 const routes: Routes = [
     {
@@ -15,57 +15,27 @@ const routes: Routes = [
         children: [
             {
                 path: 'home',
-                children: [
-                    {
-                        path: '',
-                        component: HomeComponent
-                    }
-                ]
+                component: HomeComponent
             },
             {
                 path: 'wishList',
-                children: [
-                    {
-                        path: '',
-                        component: WishlistComponent
-                    }
-                ]
+                component: WishlistComponent
             },
             {
                 path: 'customizer',
-                children: [
-                    {
-                        path: '',
-                        component: CustomizerComponent
-                    }
-                ]
+                component: CustomizerComponent
             },
             {
                 path: 'instaFeed',
-                children: [
-                    {
-                        path: '',
-                        component: InstafeedComponent
-                    }
-                ]
+                component: InstafeedComponent
             },
             {
                 path: 'profile',
-                children: [
-                    {
-                        path: '',
-                        component: ProfileComponent
-                    }
-                ]
+                component: ProfileComponent
             },
             {
                 path: 'cart',
-                children: [
-                    {
-                        path: '',
-                        component: CartComponent
-                    }
-                ]
+                component: CartComponent
             },
             {
                 path: '',
