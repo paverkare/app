@@ -6,6 +6,7 @@ import {HomeComponent} from './home/home.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {InstafeedComponent} from './instafeed/instafeed.component';
 import {ProfileComponent} from './profile/profile.component';
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
     {
@@ -58,6 +59,15 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'cart',
+                children: [
+                    {
+                        path: '',
+                        component: CartComponent
+                    }
+                ]
+            },
+            {
                 path: '',
                 redirectTo: '/tabs/tab1',
                 pathMatch: 'full'
@@ -69,7 +79,7 @@ const routes: Routes = [
         redirectTo: '/tabs/home',
         pathMatch: 'full'
     },
-    { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' }
+
 ];
 
 @NgModule({
