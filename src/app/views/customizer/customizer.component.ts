@@ -14,6 +14,14 @@ export class CustomizerComponent implements OnInit {
   constructor(private customService: CustomService) {
   }
 
+  option1 = {
+    direction: 'horizontal'
+  };
+
+  option2 = {
+    direction: 'vertical'
+  };
+
   async ngOnInit() {
     const result = await this.customService.getAll();
     console.log(result.data);
