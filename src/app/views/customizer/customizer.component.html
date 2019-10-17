@@ -1,4 +1,6 @@
+<app-header></app-header>
 <ion-content class="first-content">
+  <!--
 <ion-card>
     <img src="/assets/shapes.svg" alt="" />
     <ion-card-header>
@@ -31,3 +33,23 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
+-->
+<ion-card>
+  <ion-list>
+    <ion-item-sliding *ngFor="let c of custom">
+      <ion-item>
+        <ion-card>
+          <img src="{{c.image}}"/>
+          <ion-card-content class="ion-text-left">
+            <ion-card-subtitle color="dark" size="default" class="button-twice">Prix : {{c.price}}€</ion-card-subtitle>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-card>
+
+
+
+
