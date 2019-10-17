@@ -57,6 +57,10 @@ const routes: Routes = [
                         path: '',
                         component: ProfileComponent,
                         canActivate: [AuthGuard]
+                    },
+                    {
+                        path: 'auth',
+                        loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
                     }
                 ]
             },
@@ -74,10 +78,6 @@ const routes: Routes = [
                 redirectTo: '/tabs/tab1',
                 pathMatch: 'full'
             },
-            {
-                path: 'auth',
-                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
-            }
         ]
     },
     {

@@ -1,11 +1,4 @@
-<ion-header no-border class="header-container">
-  <ion-toolbar>
-    <button ion-button  block [routerLink]="['/tabs/cart']" class="basket-icon ion-float-right">
-      <ion-icon name="cart"></ion-icon>
-    </button>
-    <ion-img class="logo-img" src="assets/images/logo.png"></ion-img>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-fab vertical="bottom" horizontal="center" tab="customizer" slot="fixed" [routerLink]="['/tabs/customizer']">
   <ion-fab-button>
@@ -13,8 +6,9 @@
   </ion-fab-button>
 </ion-fab>
 
-<ion-tabs class="tab-container">
+<ion-tabs>
   <ion-tab-bar slot="bottom">
+
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>HOME</ion-label>
