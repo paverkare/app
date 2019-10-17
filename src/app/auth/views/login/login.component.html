@@ -1,8 +1,22 @@
-<ion-content padding>
-  <form action="">
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="text" name="email"></ion-input>
-    </ion-item>
-  </form>
+<app-header></app-header>
+<ion-content>
+  <div class="ion-padding ion-text-center">
+    <h3>Login</h3>
+  </div>
+  <div class="ion-padding">
+    <form [formGroup]="form" (ngSubmit)="loginForm()">
+      <ion-item>
+        <ion-input type="text" name="email" formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" name="password" formControlName="password" placeholder="Password"></ion-input>
+      </ion-item>
+      <p *ngIf="!isValid">
+        Invalid username or password
+      </p>
+      <div class="ion-padding-top">
+        <ion-button type="submit" expand="block" [disabled]="!form.valid">Login</ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>

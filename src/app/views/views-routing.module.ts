@@ -32,8 +32,17 @@ const routes: Routes = [
             },
             {
                 path: 'profile',
-                component: ProfileComponent,
-                canActivate: [AuthGuard]
+                children: [
+                    {
+                        path: '',
+                        component: ProfileComponent,
+                        canActivate: [AuthGuard]
+                    },
+                    {
+                        path: 'auth',
+                        loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
+                    }
+                ]
             },
             {
                 path: 'cart',
@@ -44,10 +53,6 @@ const routes: Routes = [
                 redirectTo: '/tabs/tab1',
                 pathMatch: 'full'
             },
-            {
-                path: 'auth',
-                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
-            }
         ]
     },
     {

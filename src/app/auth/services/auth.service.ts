@@ -5,6 +5,7 @@ import {User} from '../models/user';
 import {environment} from '../../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import Axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,20 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private storage: Storage) { }
 
-  login(user: User) {
+  async login(user: User) {
 
-    return this.httpClient.post(environment.api + '/api/auth/login', user).pipe(tap( async (response: any) => {
-      console.log(response);
-      if (response.jwt) {
 
-        this.isLogged.next(true);
-        await this.storage.set('JWT_TOKEN', response.jwt);
-      }
-    }));
+    const response = await Axios.post(environment.api + 'api/auth/login', user);
+
+    if (response.data.jwt) {
+
+      this.isLogged.next(true);
+      await this.storage.set('JWT_TOKEN', response.data.jwt);
+
+      return response.data;
+    }
+
+    return null;
   }
 
   isLog(): boolean {
