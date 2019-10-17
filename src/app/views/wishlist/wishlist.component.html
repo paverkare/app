@@ -12,13 +12,9 @@
             <ion-item>
                 <ion-card>
                     <img src="{{wish.image}}"/>
-                    <ion-card-header>
-                        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-                        <ion-card-title>Card Title</ion-card-title>
-                    </ion-card-header>
                     <ion-card-content class="ion-text-center">
                         <ion-button color="dark" size="default" class="button-twice">Partager</ion-button>
-                        <ion-button color="dark" size="default" class="button-twice">Acheter</ion-button>
+                        <ion-button color="dark" size="default" class="button-twice" (click)="buyItem(wish._id)">Acheter</ion-button>
                         <ion-button color="dark" size="default" (click)="unLike(wish._id)">
                             <ion-icon name="heart"></ion-icon>
                         </ion-button>
