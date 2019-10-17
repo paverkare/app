@@ -13,7 +13,7 @@ import {SharedModule} from './shared/shared.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {AuthModule} from "./auth/auth.module";
+import {AuthModule} from './auth/auth.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/locales/', '.json');

@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {IonicStorageModule} from '@ionic/storage';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './views/login/login.component';
-import {IonicModule} from "@ionic/angular";
+import {IonicModule} from '@ionic/angular';
 
 @NgModule({
   declarations: [
