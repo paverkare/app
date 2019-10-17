@@ -1,5 +1,5 @@
 export interface ProductModel {
-    id: string;
+    _id: string;
     name: string;
     type: string;
     size: number;

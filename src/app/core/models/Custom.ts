@@ -1,5 +1,5 @@
 export interface CustomModel {
-    id: string;
+    _id: string;
     name: string;
     type: string[];
     price: number;
