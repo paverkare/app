@@ -3,6 +3,7 @@ import {CartService} from '../../core/services/cart/cart.service';
 import {CustomModel} from '../../core/models/Custom';
 import {MessageService} from '../../core/services/message/message.service';
 import {ToastService} from '../../core/services/toast/toast.service';
+import {OrderService} from '../../core/services/order/order.service';
 
 @Component({
     selector: 'app-cart',
@@ -15,7 +16,8 @@ export class CartComponent implements OnInit {
 
     constructor(private cartService: CartService,
                 private messageService: MessageService,
-                private toastService: ToastService) {
+                private toastService: ToastService,
+                private orderService: OrderService) {
     }
 
     ngOnInit() {
@@ -54,5 +56,17 @@ export class CartComponent implements OnInit {
             }
         );
     }
+
+  createOrder() {
+    const customArray = this.cartItem.map(item => item._id);
+    // ['5da709a86a1c320a7855cb29', '5da7156a800af04084557e15']
+    this.orderService.createOrder('', customArray ).then(
+      order => {
+        if (order.status === 200) {
+            console.log('ok');
+        }
+      }
+    );
+  }
 
 }

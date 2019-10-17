@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
               console.log(this.order);
           }
       }
-  );
+    );
   }
 
 }
