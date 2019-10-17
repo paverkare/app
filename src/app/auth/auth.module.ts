@@ -6,21 +6,19 @@ import {IonicStorageModule} from '@ionic/storage';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './views/login/login.component';
 import {IonicModule} from '@ionic/angular';
-import {ViewsModule} from "../views/views.module";
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
       LoginComponent
   ],
   imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
     IonicStorageModule.forRoot(),
+    CommonModule,
     AuthRoutingModule,
     IonicModule,
     ReactiveFormsModule,
-    ViewsModule
+    SharedModule,
   ]
 })
 export class AuthModule { }

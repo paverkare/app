@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomService} from '../../core/services/custom/custom.service';
 import {CustomModel} from '../../core/models/Custom';
+import {ProductService} from '../../core/services/product/product.service';
+import {ProductModel} from '../../core/models/Product';
+import {LoadingController} from "@ionic/angular";
 
 
 @Component({
@@ -9,10 +12,10 @@ import {CustomModel} from '../../core/models/Custom';
   styleUrls: ['./customizer.component.scss'],
 })
 export class CustomizerComponent implements OnInit {
+
   private custom: CustomModel[];
 
-  constructor(private customService: CustomService) {
-  }
+  data: [];
 
   option1 = {
     direction: 'horizontal',
@@ -24,14 +27,39 @@ export class CustomizerComponent implements OnInit {
     loop: true
   };
 
-  async ngOnInit() {
-    const result = await this.customService.getAll();
-    console.log(result.data);
-    this.custom = result.data;
-/*
-    const add = await this.customService.add(
+  constructor(private customService: CustomService, private productService: ProductService, private loaderController: LoadingController) {}
 
-    )
-    */
+  ngOnInit() {}
+
+  async ionViewWillEnter() {
+
+    await this.configure();
+  }
+
+  async configure() {
+
+    const loading = await this.loaderController.create({message: "Loading..."});
+
+    await loading.present();
+
+    const result = await this.productService.getAll();
+
+    this.data = (result.data as Array<ProductModel>).reduce((accumulator: any[], currentValue: ProductModel) => {
+
+      if (!accumulator[(currentValue.type as any).name]) {
+
+        accumulator[(currentValue.type as any).name] = [];
+      }
+      console.log((currentValue.type as any).name);
+
+      (accumulator[(currentValue.type as any).name] as Array<ProductModel>).push(currentValue);
+
+      return accumulator;
+
+    }, []) as [];
+
+    console.log(this.data);
+
+    await loading.dismiss();
   }
 }

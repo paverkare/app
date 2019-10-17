@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import Axios from 'axios';
 import {ProductModel} from '../../models/Product';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs';
-import {CustomModel} from "../../models/Custom";
+import {CustomModel} from '../../models/Custom';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,8 @@ export class ProductService {
     constructor(private http: HttpClient) {
     }
 
-    getAll(): Observable<Array<ProductModel>> {
-        return this.http.get<Array<ProductModel>>(environment.api + 'product');
+    async getAll() {
+        return await Axios.get('product');
     }
 
     getById(id: string): Observable<ProductModel> {
@@ -30,7 +31,7 @@ export class ProductService {
             });
     }
 
-    deleteById(id: string){
+    deleteById(id: string) {
 
     }
 }
