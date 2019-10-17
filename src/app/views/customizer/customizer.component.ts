@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomService} from '../../core/services/custom/custom.service';
+import {CustomModel} from '../../core/models/Custom';
+
 
 @Component({
   selector: 'app-customizer',
@@ -6,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customizer.component.scss'],
 })
 export class CustomizerComponent implements OnInit {
+  private custom: CustomModel[];
 
-  constructor() { }
+  constructor(private customService: CustomService) {
+  }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const result = await this.customService.getAll();
+    console.log(result.data);
+    this.custom = result.data;
+/*
+    const add = await this.customService.add(
 
+    )
+    */
+  }
 }
