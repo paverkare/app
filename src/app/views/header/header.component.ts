@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from '../../core/services/message/message.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+    constructor(private messageService: MessageService) {
+    }
 
-  ngOnInit() {}
+    ngOnInit() {
+    }
+
+    refreshCart() {
+        this.messageService.emit('reload cart');
+    }
 
 }
