@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {WishListService} from '../../core/services/wishlist/wishlist.service';
 import {CustomModel} from '../../core/models/Custom';
+import {ToastController} from '@ionic/angular';
+import {CartService} from '../../core/services/cart/cart.service';
+import {MessageService} from '../../core/services/message/message.service';
+import {AuthService} from "../../auth/services/auth.service";
 
 @Component({
     selector: 'app-wishlist',
@@ -11,32 +15,70 @@ export class WishlistComponent implements OnInit {
 
     private wishList: CustomModel[];
 
-    constructor(private wishListService: WishListService) {
+    constructor(private wishListService: WishListService,
+                private toastController: ToastController,
+                private cartService: CartService,
+                private messageService: MessageService,
+                private authService: AuthService) {
     }
 
-    ngOnInit(): void {}
+    ngOnInit() {
+        this.getWishList();
 
-    ionViewWillEnter() {
+        this.messageService.listen().subscribe(
+            message => {
+                if (message === 'reload wishList') {
+                    this.getWishList();
+                }
+            }
+        );
+    }
+
+    getWishList() {
+        console.log(this.authService.userDetail);
         this.wishListService.getAll().then(
             wishList => {
-                this.wishList = JSON.parse(wishList.data);
-                console.log(this.wishList);
+                if (wishList.status === 200) {
+                    this.wishList = wishList.data;
+                }
             }
         ).catch(e => {
-            this.wishListService._getAll().subscribe(
-                wishList => this.wishList = wishList
-            );
+            console.log('error getwishlist');
+            console.log(e);
         });
     }
 
     unLike(id: string) {
         this.wishListService.remove(id).then(
-            result => {
-                console.log('***************************');
-                console.log(JSON.parse(result));
-                this.wishListService = JSON.parse(result);
+            () => {
+                this.getWishList();
             }
         );
+    }
+
+    async buyItem(idWish: string) {
+        this.cartService.create(idWish).then(
+          async () => {
+              const toast = await this.toastController.create({
+                  message: 'La montre a été ajouté dans votre panier',
+                  duration: 2000,
+                  position: 'top'
+              });
+              toast.present();
+          }
+        ).catch(
+            async (e) => {
+                console.log(e);
+                const toast = await this.toastController.create({
+                    message: 'La montre a été ajouté dans votre panier',
+                    duration: 2000,
+                    position: 'top',
+                    color: 'danger'
+                });
+                toast.present();
+            }
+        );
+
     }
 
 }

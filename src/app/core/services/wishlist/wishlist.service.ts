@@ -4,6 +4,7 @@ import {HTTP} from '@ionic-native/http/ngx';
 import {Observable} from 'rxjs';
 import {CustomModel} from '../../models/Custom';
 import {environment} from '../../../../environments/environment';
+import Axios from 'axios';
 
 @Injectable({
     providedIn: 'root'
@@ -15,23 +16,13 @@ export class WishListService {
     }
 
     getAll(): any {
-        const idUser = '5da7864be404a508c4ccf6f7';
-        return this.http.get(environment.api + 'user/' + idUser + '/wishlist', {}, {});
-    }
-
-    _getAll(): Observable<Array<CustomModel>> {
-        const idUser = '5da7864be404a508c4ccf6f7';
-        return this._http.get<Array<CustomModel>>(environment.api + 'user/' + idUser + '/wishlist');
+        const idUser = '5da8420eead1162014121733';
+        return Axios.get('user/wishlist');
     }
 
     remove(customId: string): any {
-        const userId = '5da7864be404a508c4ccf6f7';
-        return this.http.delete(environment.api + 'user/' + userId + '/wishlist/' + customId, {}, {});
-    }
-
-    _remove(customId: string): any {
-        const userId = '5da7864be404a508c4ccf6f7';
-        return this._http.delete(environment.api + 'user/' + userId + '/wishlist/' + customId);
+        const userId = '5da8420eead1162014121733';
+        return Axios.delete('user/wishlist/' + customId);
     }
     /* getById(wishId: string): Observable<CustomModel> {
          const userId = '5da72b63db16e72588f8ed10';

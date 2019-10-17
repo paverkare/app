@@ -58,13 +58,11 @@ export class AppModule {
     private configureAxios() {
 
         Axios.defaults.baseURL = environment.api;
-        Axios.interceptors.request.use( config => {
-
-            console.log('interceptor');
+        Axios.interceptors.request.use( async config => {
 
             if (this.authService.isLog()) {
 
-                //config.headers.Authorization = 'Bearer ' + (await this.authService.getJwt());
+                config.headers.Authorization = 'Bearer ' + (await this.authService.getJwt());
             }
 
             return config;

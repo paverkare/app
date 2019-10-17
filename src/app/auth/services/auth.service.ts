@@ -5,6 +5,7 @@ import {User} from '../models/user';
 import {environment} from '../../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import Axios from 'axios';
+import {UserService} from '../../core/services/user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class AuthService {
 
   isLogged = new BehaviorSubject(false);
 
-  constructor(private httpClient: HttpClient, private storage: Storage) { }
+  private user = new BehaviorSubject<User>(null);
+
+  constructor(private httpClient: HttpClient, private storage: Storage, private userService: UserService) { }
 
   async login(user: User) {
 
@@ -23,6 +26,10 @@ export class AuthService {
 
       this.isLogged.next(true);
       await this.storage.set('JWT_TOKEN', response.data.jwt);
+
+      const userDetail = await this.userService.getUserDetail();
+
+      this.user.next(userDetail.data as User);
 
       return response.data;
     }
@@ -38,5 +45,9 @@ export class AuthService {
   isLog(): boolean {
 
     return this.isLogged.getValue();
+  }
+
+  get userDetail(): User {
+    return this.user.getValue();
   }
 }
