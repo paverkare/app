@@ -10,7 +10,6 @@ import {WishlistComponent} from './wishlist/wishlist.component';
 import {InstafeedComponent} from './instafeed/instafeed.component';
 import {ProfileComponent} from './profile/profile.component';
 import {CartComponent} from './cart/cart.component';
-import {HeaderComponent} from './header/header.component';
 
 
 @NgModule({
@@ -21,10 +20,6 @@ import {HeaderComponent} from './header/header.component';
         InstafeedComponent,
         ProfileComponent,
         CartComponent,
-        HeaderComponent
-    ],
-    exports: [
-        HeaderComponent
     ],
     imports: [
         IonicModule,

@@ -8,36 +8,13 @@
     </ion-card-header>
   </ion-card>
 
-  <div class="div1">
-    <ion-slides [options]="option1">
-      <ion-slide>
-        <ion-img class="custombracelet" src="assets/images/braceletbig1.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="custombracelet" src="assets/images/braceletbig2.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="custombracelet" src="assets/images/braceletbig3.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="custombracelet" src="assets/images/braceletbig4.png"></ion-img>
-      </ion-slide>
-    </ion-slides>
-  </div>
-  <div class="div2">
-    <ion-slides [options]="option1" >
-      <ion-slide>
-        <ion-img class="cadran-img" src="assets/images/cadran1.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="cadran-img" src="assets/images/cadran2.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="cadran-img" src="assets/images/cadran3.png"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img class="cadran-img" src="assets/images/cadran4.png"></ion-img>
-      </ion-slide>
-    </ion-slides>
+  <div *ngIf="data">
+    <div class="div1">
+      <ion-slides [options]="option1">
+        <ion-slide *ngFor="let element of this.data.bracelet">
+          <ion-img class="custombracelet" src="{{ element.image }}" ></ion-img>
+        </ion-slide>
+      </ion-slides>
+    </div>
   </div>
 </ion-content>
