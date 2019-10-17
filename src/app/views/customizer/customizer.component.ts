@@ -9,6 +9,15 @@ export class CustomizerComponent implements OnInit {
 
   constructor() { }
 
+  option1 = {
+    direction: 'horizontal'
+  };
+
+  option2 = {
+    direction: 'vertical'
+  };
+
   ngOnInit() {}
+
 
 }
