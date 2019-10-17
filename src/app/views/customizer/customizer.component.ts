@@ -15,11 +15,13 @@ export class CustomizerComponent implements OnInit {
   }
 
   option1 = {
-    direction: 'horizontal'
+    direction: 'horizontal',
+    loop: true
   };
 
   option2 = {
-    direction: 'vertical'
+    direction: 'vertical',
+    loop: true
   };
 
   async ngOnInit() {
