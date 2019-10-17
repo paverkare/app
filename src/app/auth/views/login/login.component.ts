@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  ionViewWillEnter() {
+
+    console.log('I\'m enter');
+  }
+
   async loginForm() {
 
     this.isValid = true;
@@ -41,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     try {
 
-      const authResponse = this.authService.login({
+      const authResponse = await this.authService.login({
         email: this.form.get('email').value,
         password: this.form.get('password').value
       } as User);
@@ -53,7 +58,6 @@ export class LoginComponent implements OnInit {
 
       await loader.dismiss();
       this.isValid = false;
-      console.log(e);
     }
   }
 }

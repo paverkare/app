@@ -14,7 +14,9 @@ export class WishlistComponent implements OnInit {
     constructor(private wishListService: WishListService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {}
+
+    ionViewWillEnter() {
         this.wishListService.getAll().then(
             wishList => {
                 this.wishList = JSON.parse(wishList.data);

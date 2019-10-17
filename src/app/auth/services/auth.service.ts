@@ -4,7 +4,6 @@ import {Storage} from '@ionic/storage';
 import {User} from '../models/user';
 import {environment} from '../../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
 import Axios from 'axios';
 
 @Injectable({
@@ -18,8 +17,7 @@ export class AuthService {
 
   async login(user: User) {
 
-
-    const response = await Axios.post(environment.api + 'api/auth/login', user);
+    const response = await Axios.post('auth/login', user);
 
     if (response.data.jwt) {
 
@@ -30,6 +28,11 @@ export class AuthService {
     }
 
     return null;
+  }
+
+  async getJwt(): Promise<string> {
+
+      return await this.storage.get('JWT_TOKEN');
   }
 
   isLog(): boolean {
