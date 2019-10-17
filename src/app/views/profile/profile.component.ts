@@ -21,13 +21,6 @@ export class ProfileComponent implements OnInit {
           }
       }
     );
-    this.orderService.createOrder('', ['5da709a86a1c320a7855cb29', '5da7156a800af04084557e15']).then(
-      order => {
-        if (order.status === 200) {
-            console.log('ok');
-        }
-      }
-    );
   }
 
 }
