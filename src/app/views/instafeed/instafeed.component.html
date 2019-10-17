@@ -6,17 +6,17 @@
         <ion-row *ngFor="let item of rowLength">
             <ion-col>
                 <div>
-                    <img src={{instagramAPI[addValue(item,0)].node.display_url}} (click)="openNav(addValue(item,0))">
+                    <img src={{instagramAPI[addValue(item,0)].node.thumbnail_resources[0].src}} (click)="openNav(addValue(item,0))">
                 </div>
             </ion-col>
             <ion-col>
                 <div>
-                    <img src={{instagramAPI[addValue(item,1)].node.display_url}} (click)="openNav(addValue(item,1))">
+                    <img src={{instagramAPI[addValue(item,1)].node.thumbnail_resources[0].src}} (click)="openNav(addValue(item,1))">
                 </div>
             </ion-col>
             <ion-col>
                 <div>
-                    <img src={{instagramAPI[addValue(item,2)].node.display_url}} (click)="openNav(addValue(item,2))">
+                    <img src={{instagramAPI[addValue(item,2)].node.thumbnail_resources[0].src}} (click)="openNav(addValue(item,2))">
                 </div>
             </ion-col>
         </ion-row>
