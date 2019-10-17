@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Augarde</ion-title>
-    <button ion-button  block [routerLink]="['/tabs/cart']" class="basket-icon ion-float-right">
+    <button ion-button  block [routerLink]="['/tabs/cart']" class="basket-icon ion-float-right" (click)="refreshCart()">
       <ion-icon class="cart-icon" name="cart"></ion-icon>
     </button>
   </ion-toolbar>

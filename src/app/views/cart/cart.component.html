@@ -1,3 +1,20 @@
+<app-header></app-header>
 <ion-content class="first-content">
-  <p>CART</p>
+    <ion-list>
+        <ion-list-header>
+            Votre panier
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of cartItems">
+            <ion-avatar slot="start">
+                <img src="{{item.image}}">
+            </ion-avatar>
+            <ion-icon slot="end" name="trash" (click)="removeItem(item._id)"></ion-icon>
+            <ion-label>
+                <h2>{{item.name}}</h2>
+                <h3>{{item.price}}</h3>
+            </ion-label>
+        </ion-item>
+
+    </ion-list>
 </ion-content>
