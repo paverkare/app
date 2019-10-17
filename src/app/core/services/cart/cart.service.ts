@@ -1,36 +1,28 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {CustomModel} from '../../models/Custom';
-import {environment} from '../../../../environments/environment';
-import Axios from 'axios';
+import Axios, {AxiosResponse} from 'axios';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService {
 
-    constructor(private http: HttpClient) {
+    constructor() {
     }
 
-    getAll(): any {
-        const idUser = '';
-        return Axios.get(environment.api + 'user/' + idUser + '/wishlist');
+    getAll(): Promise<AxiosResponse<Array<CustomModel>>> {
+        return Axios.get<Array<CustomModel>>('user/cart');
     }
 
-    getById(wishId: string): Observable<CustomModel> {
-        const userId = '';
-        return this.http.get<CustomModel>(environment.api + 'user/' + userId + '/cart/' + wishId);
+    getById(wishId: string): Promise<AxiosResponse<CustomModel>> {
+        return Axios.get<CustomModel>('user/cart/' + wishId);
     }
 
-    create(custom_id: string): any {
-        const userId = '5da8420eead1162014121733';
-        // return this.http.post<CustomModel>(environment.api + 'user/' + userId + '/cart/', {customId, userId});
-        return Axios.post(environment.api + 'user/' + userId + '/cart/', {custom_id});
+    create(customId: string): Promise<AxiosResponse<CustomModel>> {
+        return Axios.post<CustomModel>('user/cart/', {custom_id: customId});
     }
 
     remove(customId: string): any {
-        const userId = '5da8420eead1162014121733';
-        return this.http.delete(environment.api + 'user/' + userId + '/cart/' + customId);
+        return Axios.delete('user/cart/' + customId);
     }
 }

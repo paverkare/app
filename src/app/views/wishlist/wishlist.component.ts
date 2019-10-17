@@ -4,7 +4,8 @@ import {CustomModel} from '../../core/models/Custom';
 import {ToastController} from '@ionic/angular';
 import {CartService} from '../../core/services/cart/cart.service';
 import {MessageService} from '../../core/services/message/message.service';
-import {AuthService} from "../../auth/services/auth.service";
+import {AuthService} from '../../auth/services/auth.service';
+import {ToastService} from '../../core/services/toast/toast.service';
 
 @Component({
     selector: 'app-wishlist',
@@ -16,7 +17,7 @@ export class WishlistComponent implements OnInit {
     private wishList: CustomModel[];
 
     constructor(private wishListService: WishListService,
-                private toastController: ToastController,
+                private toastService: ToastService,
                 private cartService: CartService,
                 private messageService: MessageService,
                 private authService: AuthService) {
@@ -58,24 +59,13 @@ export class WishlistComponent implements OnInit {
 
     async buyItem(idWish: string) {
         this.cartService.create(idWish).then(
-          async () => {
-              const toast = await this.toastController.create({
-                  message: 'La montre a été ajouté dans votre panier',
-                  duration: 2000,
-                  position: 'top'
-              });
-              toast.present();
-          }
+            async () => {
+                this.toastService.info('La montre a été ajouté dans votre panier');
+            }
         ).catch(
             async (e) => {
                 console.log(e);
-                const toast = await this.toastController.create({
-                    message: 'La montre a été ajouté dans votre panier',
-                    duration: 2000,
-                    position: 'top',
-                    color: 'danger'
-                });
-                toast.present();
+                this.toastService.error('Une erreur est survenue lors de l\'ajout de la montre au panier');
             }
         );
 
