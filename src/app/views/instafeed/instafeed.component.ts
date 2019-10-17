@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InstafeedService} from '../../core/services/instafeed/instafeed.service';
+
 
 @Component({
   selector: 'app-instafeed',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstafeedComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  private insta = {
+  private insta /*= {
     "graphql": {
         "hashtag": {
             "id": "17841562954081427",
@@ -5155,16 +5157,31 @@ export class InstafeedComponent implements OnInit {
             }
         }
     }
-}
+}*/
 
 imageZoom:string
-private instagramAPI = this.insta.graphql.hashtag.edge_hashtag_to_media.edges;
-private rowLength = Array(Math.trunc(this.insta.graphql.hashtag.edge_hashtag_to_media.edges.length / 3)).fill(0).map((x,i) => i);
+private instagramAPI;
+private rowLength;
 
-constructor() { }
+constructor(private instaFeed: InstafeedService) { }
 
   ngOnInit() {
-    console.log(this.insta.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
+    // console.log(this.insta.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);
+    this.insta = this.instaFeed.getFeed().then(
+        insta =>{
+            if (insta.status === 200) {
+                console.log("je passe")
+                this.insta = insta.data;
+                this.instagramAPI = this.insta.graphql.hashtag.edge_hashtag_to_media.edges;
+                this.rowLength = Array(Math.trunc(this.insta.graphql.hashtag.edge_hashtag_to_media.edges.length / 3)).fill(0).map((x,i) => i);
+            }else{
+                console.log("broken")
+            }
+        }
+    );
+    console.log(this.insta)
+    
+    console.log('rave');
   }
 
   addValue(item,valeur){
