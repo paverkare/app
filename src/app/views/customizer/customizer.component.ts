@@ -10,11 +10,13 @@ export class CustomizerComponent implements OnInit {
   constructor() { }
 
   option1 = {
-    direction: 'horizontal'
+    direction: 'horizontal',
+    loop: true
   };
 
   option2 = {
-    direction: 'vertical'
+    direction: 'vertical',
+    loop: true
   };
 
   ngOnInit() {}

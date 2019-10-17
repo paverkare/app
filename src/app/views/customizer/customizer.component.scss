@@ -1,6 +1,5 @@
 .welcome-card{
   box-shadow: none;
-  margin-top: 10%;
 }
 
 ion-slide {
@@ -8,26 +7,20 @@ ion-slide {
   background-color: rgba(255, 255, 255, 0);
 }
 
-.icon-checkmark{
-  width: 200%;
-}
-
 .custombracelet{
   height: 390px;
-  margin-top: -10%;
 }
 .cadran-img{
   height: 107px;
-  margin-top: 190%;
+  margin-top: 206%;
 }
 
 .div1 {
-  width: 100px;
+  width: 400px;
   height: 50px;
   position: absolute;
   top: calc(40% - 25px);
-  left: calc(50% - 50px);
-
+  left: calc(50% - 200px);
 }
 
 .div2 {
@@ -37,6 +30,5 @@ ion-slide {
   top: calc(40% - 32px);
   left: calc(50% - 30px);
   z-index: 2;
-
   margin-left: 1px;
 }
