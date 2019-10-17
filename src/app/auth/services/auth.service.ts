@@ -19,7 +19,7 @@ export class AuthService {
   async login(user: User) {
 
 
-    const response = await Axios.post(environment.api + 'api/auth/login', user);
+    const response = await Axios.post(environment.api + 'auth/login', user);
 
     if (response.data.jwt) {
 
