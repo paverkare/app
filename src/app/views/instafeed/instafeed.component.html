@@ -1,31 +1,30 @@
-<div class="ici">
-<ion-content class="first-content">
-    <p>Vous inspirez la communauté, inspirez-vous aussi d'elle</p>
-    <p>#Paverkareesgi</p>
-    <ion-grid>
-        <ion-row *ngFor="let item of rowLength">
-            <ion-col>
-                <div >
-                    <img src={{instagramAPI[addValue(item,0)].node.display_url}} (click)="openNav(addValue(item,0))">
-                </div>
-            </ion-col>
-            <ion-col>
-                <div >
-                    <img src={{instagramAPI[addValue(item,1)].node.display_url}} (click)="openNav(addValue(item,1))">
-                </div>
-            </ion-col>
-            <ion-col>
-                <div >
-                    <img src={{instagramAPI[addValue(item,2)].node.display_url}} (click)="openNav(addValue(item,2))">
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-</ion-content>
-<div id="myNav" (click)="closeNav()">
-    <div class="overlay--containner">
-        <img class="modal-image" id="image-modal" src={{imageZoom}}/>
-    </div>
-</div>
 
-</div>
+    <app-header></app-header>
+    <ion-content class="first-content">
+        <p class="ion-padding">Vous inspirez la communauté, inspirez-vous aussi d'elle</p>
+        <p class="ion-padding">#Paverkareesgi</p>
+        <ion-grid>
+            <ion-row *ngFor="let item of rowLength">
+                <ion-col>
+                    <div >
+                        <img src={{instagramAPI[addValue(item,0)].node.display_url}} (click)="openNav(addValue(item,0))">
+                    </div>
+                </ion-col>
+                <ion-col>
+                    <div >
+                        <img src={{instagramAPI[addValue(item,1)].node.display_url}} (click)="openNav(addValue(item,1))">
+                    </div>
+                </ion-col>
+                <ion-col>
+                    <div >
+                        <img src={{instagramAPI[addValue(item,2)].node.display_url}} (click)="openNav(addValue(item,2))">
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+    <div id="myNav" (click)="closeNav()">
+        <div class="overlay--containner">
+            <img class="modal-image" id="image-modal" src={{imageZoom}}/>
+        </div>
+    </div>

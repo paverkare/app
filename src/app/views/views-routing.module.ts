@@ -20,7 +20,8 @@ const routes: Routes = [
             },
             {
                 path: 'wishList',
-                component: WishlistComponent
+                component: WishlistComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: 'customizer',
@@ -38,10 +39,6 @@ const routes: Routes = [
                         component: ProfileComponent,
                         canActivate: [AuthGuard]
                     },
-                    {
-                        path: 'auth',
-                        loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
-                    }
                 ]
             },
             {
@@ -49,10 +46,14 @@ const routes: Routes = [
                 component: CartComponent
             },
             {
+                path: 'auth',
+                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
+            },
+            {
                 path: '',
                 redirectTo: '/tabs/tab1',
                 pathMatch: 'full'
-            },
+            }
         ]
     },
     {

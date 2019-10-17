@@ -4,6 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
 import {LoadingController} from '@ionic/angular';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   private isValid = true;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private loaderController: LoadingController) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private loaderController: LoadingController, private location: Location) {
 
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
       } as User);
 
       await loader.dismiss();
-      await this.router.navigate(['/tabs/profile']);
+      this.location.back();
 
     } catch (e) {
 
