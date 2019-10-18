@@ -58,12 +58,12 @@ export class CartComponent implements OnInit {
     }
 
   createOrder() {
-    const customArray = this.cartItem.map(item => item._id);
-    // ['5da709a86a1c320a7855cb29', '5da7156a800af04084557e15']
-    this.orderService.createOrder('', customArray ).then(
+    const customArray = this.cartItems.map(item => item._id);
+    console.log(customArray);
+    this.orderService.createOrder(customArray).then(
       order => {
         if (order.status === 200) {
-            console.log('ok');
+            this.getCartItems();
         }
       }
     );

@@ -29,5 +29,4 @@ import {CartComponent} from './cart/cart.component';
         SharedModule
     ]
 })
-export class ViewsModule {
-}
+export class ViewsModule {}

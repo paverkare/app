@@ -38,7 +38,7 @@ export class CustomizerComponent implements OnInit {
 
   async configure() {
 
-    const loading = await this.loaderController.create({message: "Loading..."});
+    const loading = await this.loaderController.create({message: 'Loading...'});
 
     await loading.present();
 
