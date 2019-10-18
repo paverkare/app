@@ -8,13 +8,21 @@
     </ion-card-header>
   </ion-card>
 
-  <div *ngIf="data">
+  <div *ngIf="this.retrieve">
     <div class="div1">
-      <ion-slides [options]="option1">
+      <ion-slides [options]="option1" #slidesStrap>
         <ion-slide *ngFor="let element of this.data.bracelet">
           <ion-img class="custombracelet" src="{{ element.image }}" ></ion-img>
         </ion-slide>
       </ion-slides>
     </div>
+    <div class="div2">
+      <ion-slides [options]="option1" #slidesDial>
+        <ion-slide *ngFor="let element of this.data.cadran">
+          <ion-img class="cadran-img" src="{{ element.image }}" ></ion-img>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <ion-button (click)="addInWishList()">Add</ion-button>
   </div>
 </ion-content>
