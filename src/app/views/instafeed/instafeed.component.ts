@@ -32,6 +32,8 @@ export class InstafeedComponent implements OnInit {
     }
 
     async getInstaFeed() {
+
+        delete this.rowLength;
         const loader = await this.loadingController.create({message: 'Loading...'});
         await loader.present();
         // console.log(this.insta.graphql.hashtag.edge_hashtag_to_media.edges[0].node.display_url);

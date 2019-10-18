@@ -16,7 +16,7 @@
         <ion-card-title>Mes commandes</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-list>
+    <ion-list *ngIf="order && order.length != 0">
       <ion-item *ngFor="let item of order">
           <ion-card class="card-width">
             <ion-grid>
@@ -39,6 +39,12 @@
           </ion-card>
       </ion-item>
     </ion-list>
+
+    <ion-card *ngIf="!order || order.length == 0" class="ion-color-danger">
+      <ion-card-content>
+          Aucune commande
+      </ion-card-content>
+    </ion-card>
   </div>
   
 </ion-content>

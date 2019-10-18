@@ -38,6 +38,7 @@ export class WishlistComponent implements OnInit {
 
     async getWishList() {
 
+        delete this.wishList;
         const loader = await this.loadingController.create({message: 'Loading...'});
         await loader.present();
 

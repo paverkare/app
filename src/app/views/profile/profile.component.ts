@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
     async getOrders() {
 
+        delete this.order;
         const loader = await this.loadingController.create();
         await loader.present();
 
