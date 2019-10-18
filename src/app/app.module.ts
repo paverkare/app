@@ -13,6 +13,10 @@ import {SharedModule} from './shared/shared.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {AuthModule} from './auth/auth.module';
+import Axios from 'axios';
+import {environment} from '../environments/environment';
+import {AuthService} from './auth/services/auth.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, 'assets/locales/', '.json');
@@ -34,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        AuthModule
     ],
     providers: [
         StatusBar,
@@ -44,4 +49,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     bootstrap: [AppComponent]
 })
 export class AppModule {
+
+    constructor(private authService: AuthService) {
+
+        this.configureAxios();
+    }
+
+    private configureAxios() {
+
+        Axios.defaults.baseURL = environment.api;
+        Axios.interceptors.request.use( async config => {
+
+            if (this.authService.isLog()) {
+
+                config.headers.Authorization = 'Bearer ' + (await this.authService.getJwt());
+            }
+
+            return config;
+        });
+    }
 }

@@ -9,6 +9,7 @@ import {HomeComponent} from './home/home.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {InstafeedComponent} from './instafeed/instafeed.component';
 import {ProfileComponent} from './profile/profile.component';
+import {CartComponent} from './cart/cart.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ProfileComponent} from './profile/profile.component';
         HomeComponent,
         WishlistComponent,
         InstafeedComponent,
-        ProfileComponent
+        ProfileComponent,
+        CartComponent,
     ],
     imports: [
         IonicModule,
@@ -27,5 +29,4 @@ import {ProfileComponent} from './profile/profile.component';
         SharedModule
     ]
 })
-export class ViewsModule {
-}
+export class ViewsModule {}

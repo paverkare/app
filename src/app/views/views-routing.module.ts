@@ -6,6 +6,8 @@ import {HomeComponent} from './home/home.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {InstafeedComponent} from './instafeed/instafeed.component';
 import {ProfileComponent} from './profile/profile.component';
+import {CartComponent} from './cart/cart.component';
+import {AuthGuard} from '../guard/auth-guard.guard';
 
 const routes: Routes = [
     {
@@ -14,48 +16,39 @@ const routes: Routes = [
         children: [
             {
                 path: 'home',
-                children: [
-                    {
-                        path: '',
-                        component: HomeComponent
-                    }
-                ]
+                component: HomeComponent
             },
             {
                 path: 'wishList',
-                children: [
-                    {
-                        path: '',
-                        component: WishlistComponent
-                    }
-                ]
+                component: WishlistComponent,
+                canActivate: [AuthGuard]
             },
             {
                 path: 'customizer',
-                children: [
-                    {
-                        path: '',
-                        component: CustomizerComponent
-                    }
-                ]
+                component: CustomizerComponent
             },
             {
                 path: 'instaFeed',
-                children: [
-                    {
-                        path: '',
-                        component: InstafeedComponent
-                    }
-                ]
+                component: InstafeedComponent
             },
             {
                 path: 'profile',
                 children: [
                     {
                         path: '',
-                        component: ProfileComponent
-                    }
+                        component: ProfileComponent,
+                        canActivate: [AuthGuard]
+                    },
                 ]
+            },
+            {
+                path: 'cart',
+                component: CartComponent,
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'auth',
+                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
             },
             {
                 path: '',
@@ -69,7 +62,7 @@ const routes: Routes = [
         redirectTo: '/tabs/home',
         pathMatch: 'full'
     },
-    { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' }
+
 ];
 
 @NgModule({

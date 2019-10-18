@@ -1,3 +1,45 @@
-<p>
-  profil works!
-</p>
+<app-header></app-header>
+<ion-content class="ion-padding">
+  <div>
+      <ion-card>
+          <ion-card-header>
+            <ion-card-title>Mon profil</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+        <p>Changer mon mot de passe</p>
+        <p>Changer mon mail</p>
+        <p>Me déconnecter</p>
+  </div>
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Mes commandes</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-list>
+      <ion-item *ngFor="let item of order">
+          <ion-card class="card-width">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                      <img class="images" src="{{item.image}}"/>
+                    </ion-col>
+                    <ion-col class="ion-align-self-center">
+                      <ion-card-content class="ion-text-center">
+                          <p>{{item.name}}</p>
+                      </ion-card-content>
+                    </ion-col>
+                    <ion-col class="ion-align-self-center">
+                      <ion-card-content class="ion-text-center">
+                          <p>{{item.price}}€</p>
+                      </ion-card-content>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+          </ion-card>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+</ion-content>
+

@@ -1,26 +1,21 @@
-<ion-header no-border>
-  <ion-toolbar>
-    <button ion-button float-right block [routerLink]="['/cart']" class="basket-icon">
-      <ion-icon name="cart"></ion-icon>
-    </button>
-    <ion-img class="logo-img" src="assets/images/logo.png"></ion-img>
-  </ion-toolbar>
-</ion-header>
+
+
 
 <ion-fab vertical="bottom" horizontal="center" tab="customizer" slot="fixed" [routerLink]="['/tabs/customizer']">
   <ion-fab-button>
-    <ion-icon name="hammer"></ion-icon>
+    <ion-icon name="md-watch"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
+
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       <ion-label>HOME</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="wishList">
+    <ion-tab-button tab="wishList" (click)="wishList()">
       <ion-icon name="heart"></ion-icon>
       <ion-label>WISHLIST</ion-label>
     </ion-tab-button>
@@ -29,12 +24,12 @@
       <ion-label></ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="instaFeed">
+    <ion-tab-button tab="instaFeed" (click)="instagram()">
       <ion-icon name="logo-instagram"></ion-icon>
       <ion-label>FEED</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="profile">
+    <ion-tab-button tab="profile" (click)="orders()">
       <ion-icon name="person"></ion-icon>
       <ion-label>PROFILE</ion-label>
     </ion-tab-button>

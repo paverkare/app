@@ -1,3 +1,36 @@
-<p>
-  wishlist works!
-</p>
+<app-header></app-header>
+<ion-content class="first-content">
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Just for you</ion-card-subtitle>
+            <ion-card-title>Your Wishlist</ion-card-title>
+        </ion-card-header>
+    </ion-card>
+
+    <ion-list *ngIf="wishList && wishList.length != 0">
+        <ion-item-sliding *ngFor="let wish of wishList">
+            <ion-item>
+                <ion-card>
+                    <img src="{{wish.image}}"/>
+                    <ion-card-content class="ion-text-center">
+                        <ion-button color="dark" size="default" class="button-twice" (click)="share(wish.image)">Partager</ion-button>
+                        <ion-button color="dark" size="default" class="button-twice" (click)="buyItem(wish._id)">Acheter</ion-button>
+                        <ion-button color="dark" size="default" (click)="unLike(wish._id)">
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-card *ngIf="!wishList || wishList.length == 0" class="ion-color-danger">
+        <ion-card-content>
+            Aucun favoris
+        </ion-card-content>
+    </ion-card>
+
+
+
+</ion-content>
