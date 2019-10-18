@@ -12,12 +12,12 @@
             <ion-icon slot="end" name="trash" (click)="removeItem(item._id)"></ion-icon>
             <ion-label>
                 <h2>{{item.name}}</h2>
-                <h3>{{item.price}}</h3>
+                <h3>{{item.price}} €</h3>
             </ion-label>
         </ion-item>
 
     </ion-list>
-    <ion-button (click)="createOrder()" expand="block" *ngIf="cartItems && cartItems.length">Acheter</ion-button>
+    <ion-button (click)="createOrder()" expand="block" *ngIf="cartItems && cartItems.length">Acheter ({{getTotal()}} €)</ion-button>
 
     <ion-text *ngIf="!cartItems || !cartItems.length" class="ion-padding">Le panier est vide</ion-text>
 </ion-content>

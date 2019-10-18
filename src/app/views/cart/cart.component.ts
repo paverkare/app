@@ -75,6 +75,14 @@ export class CartComponent implements OnInit {
         );
     }
 
+
+    getTotal(): number {
+        if (this.cartItems) {
+            return this.cartItems.map(item => item.price).reduce((n, o) => n + o);
+        }
+        return 0;
+    }
+
     share() {
         const customImg = this.cartItems.map(item => item.image);
         (window as any).plugins.socialsharing.share('#Watch, Partage ton contenu ! 😉😉', 'Augarde', customImg, 'https://www.augarde.com/');
