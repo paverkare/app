@@ -2,7 +2,7 @@
 <ion-content class="first-content">
     <p class="ion-padding">Vous inspirez la communauté, inspirez-vous aussi d'elle</p>
     <p class="ion-padding">#Paverkareesgi</p>
-    <ion-grid>
+    <ion-grid *ngIf="rowLength && rowLength.length != 0">
         <ion-row *ngFor="let item of rowLength">
             <ion-col>
                 <div>
@@ -21,6 +21,9 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+    <p *ngIf="!rowLength || rowLength.length == 0" class="ion-padding">
+            Aucune image trouvée
+    </p>
 </ion-content>
 <div id="myNav" (click)="closeNav()">
     <div class="overlay--containner">

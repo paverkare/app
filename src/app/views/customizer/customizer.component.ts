@@ -45,10 +45,14 @@ export class CustomizerComponent implements OnInit {
               private router: Router,
               private toastService: ToastService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    console.log('build conf');
+  }
 
   async ionViewWillEnter() {
 
+    console.log(this.slidesStrap);
     await this.configure();
   }
 
@@ -58,26 +62,34 @@ export class CustomizerComponent implements OnInit {
 
     await loading.present();
 
-    const result = await this.productService.getAll();
+    try {
 
-    this.data = (result.data as Array<ProductModel>).reduce((accumulator: any[], currentValue: ProductModel) => {
+      const result = await this.productService.getAll();
 
-      if (!accumulator[(currentValue.type as any).name]) {
+      this.data = (result.data as Array<ProductModel>).reduce((accumulator: any[], currentValue: ProductModel) => {
 
-        accumulator[(currentValue.type as any).name] = [];
-      }
+        if (!accumulator[(currentValue.type as any).name]) {
 
-      (accumulator[(currentValue.type as any).name] as Array<ProductModel>).push(currentValue);
+          accumulator[(currentValue.type as any).name] = [];
+        }
 
-      return accumulator;
+        (accumulator[(currentValue.type as any).name] as Array<ProductModel>).push(currentValue);
 
-    }, []) as [];
+        return accumulator;
 
-    this.retrieve = true;
+      }, []) as [];
 
-    await loading.dismiss();
+      this.retrieve = true;
 
-    await this.slidesStrap.update();
+      await loading.dismiss();
+
+      await this.slidesStrap.update();
+
+    } catch (e) {
+
+      await loading.dismiss();
+      await this.toastService.error('Can\'t get the config');
+    }
   }
 
   async addInWishList() {
