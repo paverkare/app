@@ -45,14 +45,10 @@ export class CustomizerComponent implements OnInit {
               private router: Router,
               private toastService: ToastService) {}
 
-  ngOnInit() {
-
-    console.log('build conf');
-  }
+  ngOnInit() {}
 
   async ionViewWillEnter() {
 
-    console.log(this.slidesStrap);
     await this.configure();
   }
 
