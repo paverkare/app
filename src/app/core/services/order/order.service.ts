@@ -9,13 +9,11 @@ export class OrderService {
 
   constructor() { }
 
-  getOrder(userId: string): any {
-    userId = '5da8d43d1c9d440000dd4268';
-    return Axios.get('user/' + userId + '/order/');
+  getOrder(): any {
+    return Axios.get('user/order/');
   }
 
-  createOrder(userId: string, customsIds) {
-    userId = '5da8d43d1c9d440000dd4268';
-    return Axios.post('user/' + userId + '/order/', {custom_id: customsIds});
+  createOrder(customsIds) {
+    return Axios.post('user/order/', {custom_id: customsIds});
   }
 }

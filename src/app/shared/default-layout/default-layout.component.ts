@@ -24,4 +24,8 @@ export class DefaultLayoutComponent implements OnInit {
     wishList() {
         this.messageService.emit('reload wishList');
     }
+
+    orders() {
+        this.messageService.emit('reload orders');
+    }
 }

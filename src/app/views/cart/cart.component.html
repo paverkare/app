@@ -17,5 +17,7 @@
         </ion-item>
 
     </ion-list>
-  <ion-button (click)="createOrder()">Acheter</ion-button>
+    <ion-button (click)="createOrder()" expand="block" *ngIf="cartItems && cartItems.length">Acheter</ion-button>
+
+    <ion-text *ngIf="!cartItems || !cartItems.length">Le panier est vide</ion-text>
 </ion-content>
