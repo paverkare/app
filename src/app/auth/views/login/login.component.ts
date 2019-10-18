@@ -55,10 +55,14 @@ export class LoginComponent implements OnInit {
       await loader.dismiss();
       this.location.back();
 
+      // TODO toast you ave been login
+
     } catch (e) {
 
       await loader.dismiss();
       this.isValid = false;
+
+      // TODO toast login failed
     }
   }
 }
