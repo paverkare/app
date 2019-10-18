@@ -71,4 +71,8 @@ export class WishlistComponent implements OnInit {
 
     }
 
+    share(img: string) {
+        (<any> window).plugins.socialsharing.share('#Watch, créer ta montre toi aussi ! 😉😉', 'Augarde', img, 'https://www.augarde.com/');
+    }
+
 }

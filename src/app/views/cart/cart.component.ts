@@ -57,16 +57,21 @@ export class CartComponent implements OnInit {
         );
     }
 
-  createOrder() {
-    const customArray = this.cartItems.map(item => item._id);
-    console.log(customArray);
-    this.orderService.createOrder(customArray).then(
-      order => {
-        if (order.status === 200) {
-            this.getCartItems();
-        }
-      }
-    );
-  }
+    createOrder() {
+        const customArray = this.cartItems.map(item => item._id);
+        this.orderService.createOrder(customArray).then(
+            order => {
+                if (order.status === 200) {
+                    this.getCartItems();
+                    this.share();
+                }
+            }
+        );
+    }
+
+    share() {
+        const customImg = this.cartItems.map(item => item.image);
+        (<any> window).plugins.socialsharing.share('#Watch, Partage ton contenu ! 😉😉', 'Augarde', customImg, 'https://www.augarde.com/');
+    }
 
 }
