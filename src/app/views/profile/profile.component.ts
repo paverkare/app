@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../core/services/order/order.service';
 import {CustomModel} from '../../core/models/Custom';
 import {MessageService} from '../../core/services/message/message.service';
+import {LoadingController} from "@ionic/angular";
 
 
 @Component({
@@ -13,7 +14,8 @@ export class ProfileComponent implements OnInit {
     private order: CustomModel[];
 
     constructor(private orderService: OrderService,
-                private messageService: MessageService) {
+                private messageService: MessageService,
+                private loadingController: LoadingController) {
     }
 
     ngOnInit() {
@@ -27,14 +29,18 @@ export class ProfileComponent implements OnInit {
         );
     }
 
-    getOrders() {
+    async getOrders() {
+
+        const loader = await this.loadingController.create();
+        await loader.present();
+
         this.orderService.getOrder().then(
             order => {
                 if (order.status === 200) {
                     this.order = order.data;
                 }
             }
-        );
+        ).finally(() => loader.dismiss());
     }
 
 }

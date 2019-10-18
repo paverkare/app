@@ -4,6 +4,7 @@ import {CustomModel} from '../../core/models/Custom';
 import {MessageService} from '../../core/services/message/message.service';
 import {ToastService} from '../../core/services/toast/toast.service';
 import {OrderService} from '../../core/services/order/order.service';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
     selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
     constructor(private cartService: CartService,
                 private messageService: MessageService,
                 private toastService: ToastService,
-                private orderService: OrderService) {
+                private orderService: OrderService,
+                private loadingController: LoadingController) {
     }
 
     ngOnInit() {
@@ -31,7 +33,11 @@ export class CartComponent implements OnInit {
         );
     }
 
-    getCartItems() {
+    async getCartItems() {
+
+        const loader = await this.loadingController.create({message: 'Loading...'});
+        await loader.present();
+
         this.cartService.getAll().then(
             items => {
                 if (items.status === 200) {
@@ -41,7 +47,7 @@ export class CartComponent implements OnInit {
             }
         ).catch(
             e => console.log(e)
-        );
+        ).finally(() => loader.dismiss());
     }
 
     removeItem(idItem: string) {
@@ -71,7 +77,7 @@ export class CartComponent implements OnInit {
 
     share() {
         const customImg = this.cartItems.map(item => item.image);
-        (<any> window).plugins.socialsharing.share('#Watch, Partage ton contenu ! 😉😉', 'Augarde', customImg, 'https://www.augarde.com/');
+        (window as any).plugins.socialsharing.share('#Watch, Partage ton contenu ! 😉😉', 'Augarde', customImg, 'https://www.augarde.com/');
     }
 
 }

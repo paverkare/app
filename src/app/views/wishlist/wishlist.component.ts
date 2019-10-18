@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WishListService} from '../../core/services/wishlist/wishlist.service';
 import {CustomModel} from '../../core/models/Custom';
-import {ToastController} from '@ionic/angular';
+import {LoadingController, ToastController} from '@ionic/angular';
 import {CartService} from '../../core/services/cart/cart.service';
 import {MessageService} from '../../core/services/message/message.service';
 import {AuthService} from '../../auth/services/auth.service';
@@ -20,7 +20,8 @@ export class WishlistComponent implements OnInit {
                 private toastService: ToastService,
                 private cartService: CartService,
                 private messageService: MessageService,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private loadingController: LoadingController) {
     }
 
     ngOnInit() {
@@ -35,8 +36,11 @@ export class WishlistComponent implements OnInit {
         );
     }
 
-    getWishList() {
-        console.log(this.authService.userDetail);
+    async getWishList() {
+
+        const loader = await this.loadingController.create({message: 'Loading...'});
+        await loader.present();
+
         this.wishListService.getAll().then(
             wishList => {
                 if (wishList.status === 200) {
@@ -46,6 +50,8 @@ export class WishlistComponent implements OnInit {
         ).catch(e => {
             console.log('error getwishlist');
             console.log(e);
+        }).finally(() => {
+            loader.dismiss();
         });
     }
 
@@ -72,7 +78,7 @@ export class WishlistComponent implements OnInit {
     }
 
     share(img: string) {
-        (<any> window).plugins.socialsharing.share('#Watch, créer ta montre toi aussi ! 😉😉', 'Augarde', img, 'https://www.augarde.com/');
+        (window as any).plugins.socialsharing.share('#Watch, créer ta montre toi aussi ! 😉😉', 'Augarde', img, 'https://www.augarde.com/');
     }
 
 }

@@ -8,7 +8,7 @@
         </ion-card-header>
     </ion-card>
 
-    <ion-list>
+    <ion-list *ngIf="wishList && wishList.length != 0">
         <ion-item-sliding *ngFor="let wish of wishList">
             <ion-item>
                 <ion-card>
@@ -24,6 +24,12 @@
             </ion-item>
         </ion-item-sliding>
     </ion-list>
+
+    <ion-card *ngIf="!wishList || wishList.length == 0" class="ion-color-danger">
+        <ion-card-content>
+            Aucun favoris
+        </ion-card-content>
+    </ion-card>
 
 
 
