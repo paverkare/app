@@ -48,7 +48,6 @@ export class WishlistComponent implements OnInit {
                 }
             }
         ).catch(e => {
-            console.log('error getwishlist');
             console.log(e);
         }).finally(() => {
             loader.dismiss();

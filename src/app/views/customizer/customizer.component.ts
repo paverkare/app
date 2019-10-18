@@ -7,6 +7,7 @@ import {IonSlides, LoadingController} from '@ionic/angular';
 import {WishListService} from '../../core/services/wishlist/wishlist.service';
 import {AuthService} from '../../auth/services/auth.service';
 import {Router} from '@angular/router';
+import {ToastService} from '../../core/services/toast/toast.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class CustomizerComponent implements OnInit {
               private loaderController: LoadingController,
               private wishListService: WishListService,
               private authService: AuthService,
-              private router: Router) {}
+              private router: Router,
+              private toastService: ToastService) {}
 
   ngOnInit() {}
 
@@ -71,8 +73,6 @@ export class CustomizerComponent implements OnInit {
 
     }, []) as [];
 
-    console.log(this.data);
-
     this.retrieve = true;
 
     await loading.dismiss();
@@ -94,16 +94,11 @@ export class CustomizerComponent implements OnInit {
       const strap = (this.data as any).bracelet[indexStrap];
       const dial = (this.data as any).cadran[indexDial];
 
-      console.log(strap);
-      console.log(dial);
-
       const result = await this.wishListService.create(strap, dial);
-
-      // TODO toast de succés
+      this.toastService.info('Votre montre a été ajoutée à vos favoris !');
 
     } catch (e) {
-
-      // TODO toast d'erreur
+      this.toastService.error('Une erreur est survenue lors de \'ajout de votre montre à vos favoris');
     }
   }
 }

@@ -28,4 +28,8 @@ export class DefaultLayoutComponent implements OnInit {
     orders() {
         this.messageService.emit('reload orders');
     }
+
+    instagram() {
+        this.messageService.emit('reload instagram');
+    }
 }

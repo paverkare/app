@@ -17,7 +17,7 @@ export class WishListService {
         return Axios.delete('user/wishlist/' + customId);
     }
 
-    create(idBracelet: string, idCadran: string){
+    create(idBracelet: string, idCadran: string) {
 
         return Axios.post('user/wishlist', {idBracelet, idCadran});
     }
